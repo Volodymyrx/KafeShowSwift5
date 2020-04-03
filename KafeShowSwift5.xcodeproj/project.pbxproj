@@ -13,6 +13,7 @@
 		1511853F243632AB007EC22E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511853E243632AB007EC22E /* Assets.xcassets */; };
 		15118542243632AB007EC22E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15118540243632AB007EC22E /* LaunchScreen.storyboard */; };
 		1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15118549243657A7007EC22E /* MainTableViewController.swift */; };
+		159125A924375E4E00323437 /* CafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159125A824375E4E00323437 /* CafeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		15118541243632AB007EC22E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15118543243632AB007EC22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15118549243657A7007EC22E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		159125A824375E4E00323437 /* CafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				15118549243657A7007EC22E /* MainTableViewController.swift */,
+				159125A824375E4E00323437 /* CafeTableViewCell.swift */,
 				1511853B243632AA007EC22E /* Main.storyboard */,
 				1511853E243632AB007EC22E /* Assets.xcassets */,
 				15118535243632AA007EC22E /* AppDelegate.swift */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159125A924375E4E00323437 /* CafeTableViewCell.swift in Sources */,
 				15118536243632AA007EC22E /* AppDelegate.swift in Sources */,
 				1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */,
 				15118538243632AA007EC22E /* SceneDelegate.swift in Sources */,

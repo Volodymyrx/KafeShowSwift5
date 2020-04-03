@@ -15,13 +15,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellRestaurant" id="TUk-T5-MEo">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellRestaurant" rowHeight="85" id="TUk-T5-MEo" customClass="CafeTableViewCell" customModule="KafeShowSwift5" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TUk-T5-MEo" id="O5t-CH-GeI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FDs-Pk-QsO">
+                                            <rect key="frame" x="10" y="10" width="65" height="65"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="65" id="3BF-j6-IaF"/>
+                                                <constraint firstAttribute="width" constant="65" id="8LR-G0-0Ia"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="sXV-8D-her">
+                                            <rect key="frame" x="85" y="10" width="280" height="65"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u98-ez-5po">
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="24.5"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtG-mx-GA6">
+                                                    <rect key="frame" x="0.0" y="24.5" width="280" height="21.5"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjt-Bf-arw">
+                                                    <rect key="frame" x="0.0" y="46" width="280" height="19"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Tjt-Bf-arw" secondAttribute="trailing" id="1FZ-kG-wi9"/>
+                                                <constraint firstItem="Tjt-Bf-arw" firstAttribute="leading" secondItem="sXV-8D-her" secondAttribute="leading" id="1oX-5m-s5X"/>
+                                                <constraint firstItem="UtG-mx-GA6" firstAttribute="leading" secondItem="sXV-8D-her" secondAttribute="leading" id="9HI-LN-7aJ"/>
+                                                <constraint firstItem="u98-ez-5po" firstAttribute="leading" secondItem="sXV-8D-her" secondAttribute="leading" id="ECC-7T-6nC"/>
+                                                <constraint firstAttribute="trailing" secondItem="u98-ez-5po" secondAttribute="trailing" id="c98-Cp-hwj"/>
+                                                <constraint firstAttribute="trailing" secondItem="UtG-mx-GA6" secondAttribute="trailing" id="poa-ah-CXP"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sXV-8D-her" firstAttribute="top" secondItem="O5t-CH-GeI" secondAttribute="top" constant="10" id="3My-pi-nYB"/>
+                                        <constraint firstItem="FDs-Pk-QsO" firstAttribute="top" secondItem="O5t-CH-GeI" secondAttribute="top" constant="10" id="Bfa-St-KS3"/>
+                                        <constraint firstAttribute="bottom" secondItem="sXV-8D-her" secondAttribute="bottom" constant="10" id="V0q-MO-nKp"/>
+                                        <constraint firstAttribute="bottom" secondItem="FDs-Pk-QsO" secondAttribute="bottom" constant="10" id="cI1-Rg-7HH"/>
+                                        <constraint firstItem="sXV-8D-her" firstAttribute="leading" secondItem="FDs-Pk-QsO" secondAttribute="trailing" constant="10" id="i0P-ph-Gq8"/>
+                                        <constraint firstItem="FDs-Pk-QsO" firstAttribute="leading" secondItem="O5t-CH-GeI" secondAttribute="leading" constant="10" id="wX2-6n-P09"/>
+                                        <constraint firstAttribute="trailing" secondItem="sXV-8D-her" secondAttribute="trailing" constant="10" id="yeQ-5j-Jgd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageCell" destination="FDs-Pk-QsO" id="2Ww-Xq-SkD"/>
+                                    <outlet property="labelLocation" destination="UtG-mx-GA6" id="QHa-HX-TRA"/>
+                                    <outlet property="labelName" destination="u98-ez-5po" id="BUG-eX-ydU"/>
+                                    <outlet property="labelType" destination="Tjt-Bf-arw" id="RSc-Jk-5kx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -33,7 +88,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDh-VS-e2a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="113"/>
+            <point key="canvasLocation" x="192.80000000000001" y="112.89355322338831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l6w-7H-siN">
