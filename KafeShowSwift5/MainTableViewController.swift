@@ -10,12 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    let restaurantNames = [
-        "Burger Heroes", "Kitchen", "Bonsai", "Дастархан",
-        "Индокитай", "X.O", "Балкан Гриль", "Sherlock Holmes",
-        "Speak Easy", "Morris Pub", "Вкусные истории",
-        "Классик", "Love&Life", "Шок", "Бочка"
-    ]
+    let cafes = Cafes.cafes
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +25,17 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurantNames.count
+        return cafes.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellRestaurant", for: indexPath) as! CafeTableViewCell
-        
-        cell.labelName.text = " \(indexPath.row + 1) \(restaurantNames[indexPath.row])"
-        cell.labelLocation.text = restaurantNames[indexPath.row]
-        cell.labelType.text = restaurantNames[indexPath.row]
-        cell.imageCell.image = UIImage(named: restaurantNames[indexPath.row])
+        let cafe = cafes[indexPath.row]
+        cell.labelName.text = " \(indexPath.row + 1) \(cafe.name)"
+        cell.labelLocation.text = cafe.locatin
+        cell.labelType.text = cafe.type
+        cell.imageCell.image = UIImage(named: cafe.image)
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
         
