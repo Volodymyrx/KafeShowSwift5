@@ -10,7 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    let cafes = Cafes.cafes
+//    var cafes = Cafes.cafes
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +25,23 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cafes.count
+        return 2//cafes.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellRestaurant", for: indexPath) as! CafeTableViewCell
-        let cafe = cafes[indexPath.row]
-        cell.labelName.text = " \(indexPath.row + 1) \(cafe.name)"
-        cell.labelLocation.text = cafe.locatin
-        cell.labelType.text = cafe.type
-        cell.imageCell.image = UIImage(named: cafe.image)
+//        let cafe = cafes[indexPath.row]
+//        cell.labelName.text = " \(indexPath.row + 1) \(cafe.name)"
+//        cell.labelLocation.text = cafe.locatin
+//        cell.labelType.text = cafe.type
+//        
+//        if cafe.image == nil {
+//            cell.imageCell.image = UIImage(named: cafe.restaurantImage!)
+//        } else {
+//            cell.imageCell.image = cafe.image
+//        }
+        
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
         
@@ -58,7 +64,13 @@ class MainTableViewController: UITableViewController {
      }
      */
     
-    @IBAction func cancelAction(_ segue: UIStoryboard){
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue){
+        guard let newPlaceSourseViewController = segue.source as? NewPlaceTableViewController else {return}
+        newPlaceSourseViewController.saveNewPlace()
+//        guard let addCafe = newPlaceSourseViewController.newCafe else {return}
+//        self.cafes.append(addCafe)
+        tableView.reloadData()
+        
         
     }
 }

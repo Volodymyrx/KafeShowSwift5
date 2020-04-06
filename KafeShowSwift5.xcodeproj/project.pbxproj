@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,11 @@
 		1511853F243632AB007EC22E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511853E243632AB007EC22E /* Assets.xcassets */; };
 		15118542243632AB007EC22E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15118540243632AB007EC22E /* LaunchScreen.storyboard */; };
 		1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15118549243657A7007EC22E /* MainTableViewController.swift */; };
+		154043A824387039006E7037 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154043A724387039006E7037 /* NewPlaceViewController.swift */; };
+		154043B4243B6F8B006E7037 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154043B3243B6F8B006E7037 /* StorageManager.swift */; };
 		159125A924375E4E00323437 /* CafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159125A824375E4E00323437 /* CafeTableViewCell.swift */; };
 		159125AD243764B600323437 /* CaffeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159125AC243764B600323437 /* CaffeModel.swift */; };
+		56B163C142C3641043D53EE2 /* Pods_KafeShowSwift5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9FFDB1E3E99259789BB55 /* Pods_KafeShowSwift5.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +29,13 @@
 		15118541243632AB007EC22E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15118543243632AB007EC22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15118549243657A7007EC22E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		154043A724387039006E7037 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
+		154043B3243B6F8B006E7037 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		159125A824375E4E00323437 /* CafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeTableViewCell.swift; sourceTree = "<group>"; };
 		159125AC243764B600323437 /* CaffeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeModel.swift; sourceTree = "<group>"; };
+		4E88B29E602975354993FA23 /* Pods-KafeShowSwift5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KafeShowSwift5.release.xcconfig"; path = "Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5.release.xcconfig"; sourceTree = "<group>"; };
+		7CF9FFDB1E3E99259789BB55 /* Pods_KafeShowSwift5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KafeShowSwift5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8332A8F5521725F64BD13374 /* Pods-KafeShowSwift5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KafeShowSwift5.debug.xcconfig"; path = "Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B163C142C3641043D53EE2 /* Pods_KafeShowSwift5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +55,8 @@
 			children = (
 				15118534243632AA007EC22E /* KafeShowSwift5 */,
 				15118533243632AA007EC22E /* Products */,
+				324B3AB8661CD28F9C5ECE37 /* Pods */,
+				1D6E84668DD998ABB4A20049 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +71,12 @@
 		15118534243632AA007EC22E /* KafeShowSwift5 */ = {
 			isa = PBXGroup;
 			children = (
+				159125AC243764B600323437 /* CaffeModel.swift */,
+				154043B3243B6F8B006E7037 /* StorageManager.swift */,
 				15118549243657A7007EC22E /* MainTableViewController.swift */,
+				154043A724387039006E7037 /* NewPlaceViewController.swift */,
 				159125A824375E4E00323437 /* CafeTableViewCell.swift */,
 				1511853B243632AA007EC22E /* Main.storyboard */,
-				159125AC243764B600323437 /* CaffeModel.swift */,
 				1511853E243632AB007EC22E /* Assets.xcassets */,
 				15118535243632AA007EC22E /* AppDelegate.swift */,
 				15118537243632AA007EC22E /* SceneDelegate.swift */,
@@ -73,6 +86,23 @@
 			path = KafeShowSwift5;
 			sourceTree = "<group>";
 		};
+		1D6E84668DD998ABB4A20049 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CF9FFDB1E3E99259789BB55 /* Pods_KafeShowSwift5.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		324B3AB8661CD28F9C5ECE37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8332A8F5521725F64BD13374 /* Pods-KafeShowSwift5.debug.xcconfig */,
+				4E88B29E602975354993FA23 /* Pods-KafeShowSwift5.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15118546243632AB007EC22E /* Build configuration list for PBXNativeTarget "KafeShowSwift5" */;
 			buildPhases = (
+				90C515A7F05107245D74A738 /* [CP] Check Pods Manifest.lock */,
 				1511852E243632AA007EC22E /* Sources */,
 				1511852F243632AA007EC22E /* Frameworks */,
 				15118530243632AA007EC22E /* Resources */,
+				443DAF0C3E160B78E402BF14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,13 +171,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		443DAF0C3E160B78E402BF14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90C515A7F05107245D74A738 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KafeShowSwift5-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1511852E243632AA007EC22E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				159125A924375E4E00323437 /* CafeTableViewCell.swift in Sources */,
+				154043A824387039006E7037 /* NewPlaceViewController.swift in Sources */,
 				15118536243632AA007EC22E /* AppDelegate.swift in Sources */,
+				154043B4243B6F8B006E7037 /* StorageManager.swift in Sources */,
 				159125AD243764B600323437 /* CaffeModel.swift in Sources */,
 				1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */,
 				15118538243632AA007EC22E /* SceneDelegate.swift in Sources */,
@@ -290,6 +366,7 @@
 		};
 		15118547243632AB007EC22E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8332A8F5521725F64BD13374 /* Pods-KafeShowSwift5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -308,6 +385,7 @@
 		};
 		15118548243632AB007EC22E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E88B29E602975354993FA23 /* Pods-KafeShowSwift5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
