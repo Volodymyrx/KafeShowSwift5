@@ -10,6 +10,8 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
 
+    var currentPlace: Place?
+    
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     @IBOutlet weak var placeImage: UIImageView!
     @IBOutlet weak var placeNameTextField: UITextField!
@@ -25,9 +27,9 @@ class NewPlaceTableViewController: UITableViewController {
 //        DispatchQueue.main.async {
 //            self.newCafe.savePlaces() //temp
 //        }
-        
         saveButtonItem.isEnabled = false
         placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        setupEditScreen()
         
     }
     
@@ -39,7 +41,8 @@ class NewPlaceTableViewController: UITableViewController {
         }
 
     }
-    func saveNewPlace(){
+    func savePlace(){
+        
         var image: UIImage?
         if imageIsChanged {
             image = placeImage.image
@@ -47,12 +50,65 @@ class NewPlaceTableViewController: UITableViewController {
             image = #imageLiteral(resourceName: "imagePlaceholder")
         }
         
-//        newCafe = Cafe(name: placeNameTextField.text!,
-//                       locatin: placeLocationTextField.text,
-//                       type: placeTypeTextField.text,
-//                       image: image,
-//                       restaurantImage: nil)
+        let imageDate = image?.pngData()
+        
+        //        let newPlace = Place()
+//        newPlace.name = placeNameTextField.text!
+//        newPlace.locatin = placeLocationTextField.text
+//        newPlace.type = placeTypeTextField.text
+//        newPlace.imageDate = imageDate
+        
+        if currentPlace != nil {
+            try! realm.write {
+                currentPlace?.name = placeNameTextField.text!
+                currentPlace?.locatin = placeLocationTextField.text
+                currentPlace?.type = placeTypeTextField.text
+                currentPlace?.imageDate = imageDate
+            }
+        }else {
+        let newPlace = Place(name: placeNameTextField.text!,
+                             location: placeLocationTextField.text,
+                             type: placeTypeTextField.text,
+                             imageDate: imageDate)
+        
+        StorageManager.saveObject(newPlace)
+        }
     }
+    
+    private func setupEditScreen(){
+        if currentPlace != nil {
+            setupNavigationBar()
+            imageIsChanged = true
+            guard let data = currentPlace?.imageDate, let image = UIImage(data: data) else {return}
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill
+            placeNameTextField.text = currentPlace?.name
+            placeLocationTextField.text = currentPlace?.locatin
+            placeTypeTextField.text = currentPlace?.type
+        }
+        
+        
+        
+        
+//        guard let place = currentPlace else {return}
+//        placeNameTextField.text = place.name
+//        placeLocationTextField.text = place.locatin
+//        placeTypeTextField.text = place.type
+//        placeImage.image = UIImage(data: place.imageDate!)
+        
+        
+    }
+    private func setupNavigationBar(){
+        navigationItem.leftBarButtonItem = nil
+        title = currentPlace?.name
+        saveButtonItem.isEnabled = true
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        
+        
+    }
+    
     
     @IBAction func cancelActionButtonItem(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

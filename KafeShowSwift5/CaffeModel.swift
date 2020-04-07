@@ -15,6 +15,15 @@ class Place: Object {
    @objc dynamic var type: String?
     @objc dynamic var imageDate: Data?
     
+    convenience init(name: String, location: String?, type: String?, imageDate: Data?) {
+        self.init()
+        self.name = name
+        self.locatin = location
+        self.type = type
+        self.imageDate = imageDate
+    }
+    
+    
     
 }
 

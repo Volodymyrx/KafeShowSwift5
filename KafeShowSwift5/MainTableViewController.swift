@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainTableViewController: UITableViewController {
     
-//    var cafes = Cafes.cafes
+    var places: Results<Place>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        places = realm.objects(Place.self)
         
     }
     
@@ -25,22 +27,17 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2//cafes.count
+        return places.isEmpty ? 0 : places.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellRestaurant", for: indexPath) as! CafeTableViewCell
-//        let cafe = cafes[indexPath.row]
-//        cell.labelName.text = " \(indexPath.row + 1) \(cafe.name)"
-//        cell.labelLocation.text = cafe.locatin
-//        cell.labelType.text = cafe.type
-//        
-//        if cafe.image == nil {
-//            cell.imageCell.image = UIImage(named: cafe.restaurantImage!)
-//        } else {
-//            cell.imageCell.image = cafe.image
-//        }
+        let place = places[indexPath.row]
+        cell.labelName.text = " \(indexPath.row + 1) \(place.name)"
+        cell.labelLocation.text = place.locatin
+        cell.labelType.text = place.type
+        cell.imageCell.image = UIImage(data: place.imageDate!)
         
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
@@ -50,27 +47,56 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//
+//        let place = places[indexPath.row]
+//        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
+//            StorageManager.deleteObject(place)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//
+//
+//
+//        return [deleteAction]
+//    }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let place = places[indexPath.row]
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
+            StorageManager.deleteObject(place)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        let deleteSwipe  = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        
+        return deleteSwipe
+        
+        
+    }
+    
+    
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: navigation
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue){
         guard let newPlaceSourseViewController = segue.source as? NewPlaceTableViewController else {return}
-        newPlaceSourseViewController.saveNewPlace()
-//        guard let addCafe = newPlaceSourseViewController.newCafe else {return}
-//        self.cafes.append(addCafe)
+        newPlaceSourseViewController.savePlace()
         tableView.reloadData()
         
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier  == "showDetail" {
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            let place = places[indexPath.row]
+            let goalViewController = segue.destination as! NewPlaceTableViewController
+            goalViewController.currentPlace = place
+        }
+    }
+    
 }
