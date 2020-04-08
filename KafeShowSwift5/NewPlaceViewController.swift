@@ -17,13 +17,14 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var placeLocationTextField: UITextField!
     @IBOutlet weak var placeTypeTextField: UITextField!
-
+    @IBOutlet weak var ratingControl: RatingControl!
+    
     var imageIsChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 //        DispatchQueue.main.async {
 //            self.newCafe.savePlaces() //temp
 //        }
@@ -64,12 +65,14 @@ class NewPlaceTableViewController: UITableViewController {
                 currentPlace?.locatin = placeLocationTextField.text
                 currentPlace?.type = placeTypeTextField.text
                 currentPlace?.imageDate = imageDate
+                currentPlace?.rating = Double(ratingControl.rating)
             }
         }else {
         let newPlace = Place(name: placeNameTextField.text!,
                              location: placeLocationTextField.text,
                              type: placeTypeTextField.text,
-                             imageDate: imageDate)
+                             imageDate: imageDate,
+                             rating: Double(ratingControl.rating))
         
         StorageManager.saveObject(newPlace)
         }
@@ -85,6 +88,7 @@ class NewPlaceTableViewController: UITableViewController {
             placeNameTextField.text = currentPlace?.name
             placeLocationTextField.text = currentPlace?.locatin
             placeTypeTextField.text = currentPlace?.type
+            ratingControl.rating = Int(currentPlace!.rating)
         }
         
         

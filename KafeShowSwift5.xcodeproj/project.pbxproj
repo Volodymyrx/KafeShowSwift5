@@ -15,6 +15,7 @@
 		1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15118549243657A7007EC22E /* MainTableViewController.swift */; };
 		154043A824387039006E7037 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154043A724387039006E7037 /* NewPlaceViewController.swift */; };
 		154043B4243B6F8B006E7037 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154043B3243B6F8B006E7037 /* StorageManager.swift */; };
+		154043B6243DD7BB006E7037 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154043B5243DD7BB006E7037 /* RatingControl.swift */; };
 		159125A924375E4E00323437 /* CafeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159125A824375E4E00323437 /* CafeTableViewCell.swift */; };
 		159125AD243764B600323437 /* CaffeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159125AC243764B600323437 /* CaffeModel.swift */; };
 		56B163C142C3641043D53EE2 /* Pods_KafeShowSwift5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF9FFDB1E3E99259789BB55 /* Pods_KafeShowSwift5.framework */; };
@@ -31,6 +32,7 @@
 		15118549243657A7007EC22E /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		154043A724387039006E7037 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		154043B3243B6F8B006E7037 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		154043B5243DD7BB006E7037 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		159125A824375E4E00323437 /* CafeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeTableViewCell.swift; sourceTree = "<group>"; };
 		159125AC243764B600323437 /* CaffeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeModel.swift; sourceTree = "<group>"; };
 		4E88B29E602975354993FA23 /* Pods-KafeShowSwift5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KafeShowSwift5.release.xcconfig"; path = "Target Support Files/Pods-KafeShowSwift5/Pods-KafeShowSwift5.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				159125AC243764B600323437 /* CaffeModel.swift */,
+				154043B5243DD7BB006E7037 /* RatingControl.swift */,
 				154043B3243B6F8B006E7037 /* StorageManager.swift */,
 				15118549243657A7007EC22E /* MainTableViewController.swift */,
 				154043A724387039006E7037 /* NewPlaceViewController.swift */,
@@ -222,6 +225,7 @@
 				154043A824387039006E7037 /* NewPlaceViewController.swift in Sources */,
 				15118536243632AA007EC22E /* AppDelegate.swift in Sources */,
 				154043B4243B6F8B006E7037 /* StorageManager.swift in Sources */,
+				154043B6243DD7BB006E7037 /* RatingControl.swift in Sources */,
 				159125AD243764B600323437 /* CaffeModel.swift in Sources */,
 				1511854A243657A7007EC22E /* MainTableViewController.swift in Sources */,
 				15118538243632AA007EC22E /* SceneDelegate.swift in Sources */,

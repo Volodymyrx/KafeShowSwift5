@@ -9,31 +9,68 @@
 import UIKit
 import RealmSwift
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UIViewController {
     
-    var places: Results<Place>!
+    private var places: Results<Place>!
+    private var filteredPlaces: Results<Place>!
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var revers = false
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var reversedSortingButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         places = realm.objects(Place.self)
+//        tableView.dataSource = self
+//        tableView.delegate = self
+        
+        // Setup the search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search:"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
     }
     
-    // MARK: - Table view data source
+}
+
+// MARK: - Table view data source
+extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredPlaces.count
+        }
         return places.isEmpty ? 0 : places.count
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var place = Place()
+        if isFiltering {
+            place = filteredPlaces[indexPath.row]
+        }else{
+            place = places[indexPath.row]
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellRestaurant", for: indexPath) as! CafeTableViewCell
-        let place = places[indexPath.row]
         cell.labelName.text = " \(indexPath.row + 1) \(place.name)"
         cell.labelLocation.text = place.locatin
         cell.labelType.text = place.type
@@ -44,22 +81,17 @@ class MainTableViewController: UITableViewController {
         
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
+    }
     
-    // MARK: - Table view delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//
-//        let place = places[indexPath.row]
-//        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
-//            StorageManager.deleteObject(place)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//
-//
-//
-//        return [deleteAction]
-//    }
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+    // MARK: - delete
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let place = places[indexPath.row]
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
@@ -68,18 +100,9 @@ class MainTableViewController: UITableViewController {
         }
         
         let deleteSwipe  = UISwipeActionsConfiguration(actions: [deleteAction])
-        
-        
         return deleteSwipe
-        
-        
     }
     
-    
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
     
     // MARK: navigation
     
@@ -93,10 +116,49 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier  == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
-            let place = places[indexPath.row]
+            var place = Place()
+            if isFiltering {
+                place = filteredPlaces[indexPath.row]
+            }else{
+                place = places[indexPath.row]
+            }
             let goalViewController = segue.destination as! NewPlaceTableViewController
             goalViewController.currentPlace = place
         }
+    }
+    
+}
+// MARK: Search
+extension MainTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        filteredPlaces = places.filter("name CONTAINS[c] %@ OR locatin CONTAINS[c] %@", searchText, searchText)
+        tableView.reloadData()
+    }
+    
+}
+
+// MARK: Sorting
+extension MainTableViewController {
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        sorting()
+    }
+    
+    @IBAction func actionReversedSorting(_ sender: UIBarButtonItem) {
+        revers = !revers
+        reversedSortingButton.image = revers ?  #imageLiteral(resourceName: "AZ") : #imageLiteral(resourceName: "ZA")
+        sorting()
+    }
+    private func sorting(){
+        if segmentedControl.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: revers)
+        }else{
+            places = places.sorted(byKeyPath: "name", ascending: revers)
+        }
+        tableView.reloadData()
     }
     
 }
