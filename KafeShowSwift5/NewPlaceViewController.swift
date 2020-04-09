@@ -52,12 +52,7 @@ class NewPlaceTableViewController: UITableViewController {
     }
     func savePlace(){
         
-        var image: UIImage?
-        if imageIsChanged {
-            image = placeImage.image
-        }else{
-            image = #imageLiteral(resourceName: "imagePlaceholder")
-        }
+        let image = imageIsChanged ? placeImage.image : #imageLiteral(resourceName: "imagePlaceholder")
         
         let imageDate = image?.pngData()
         
@@ -159,6 +154,18 @@ class NewPlaceTableViewController: UITableViewController {
             view.endEditing(true)
         }
     }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "showMap" {return}
+        
+        let mapViewController = segue.destination as! MapViewController
+        mapViewController.place = currentPlace
+//        prepare(for: segue, sender: nil)
+        
+        
+    }
+    
     
 }
 
