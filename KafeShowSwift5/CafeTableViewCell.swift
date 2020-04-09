@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import Cosmos
 
 class CafeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imageCell: UIImageView!
+    @IBOutlet weak var imageCell: UIImageView! {
+        didSet{
+            
+            imageCell.layer.cornerRadius = imageCell.frame.size.height / 2
+            imageCell.clipsToBounds = true
+        }
+    }
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var labelType: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView! {
+        didSet {
+            cosmosView.settings.updateOnTouch = false
+        }
+    }
     
     
     

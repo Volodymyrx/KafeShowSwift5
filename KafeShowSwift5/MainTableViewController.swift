@@ -58,27 +58,21 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
         if isFiltering {
             return filteredPlaces.count
         }
-        return places.isEmpty ? 0 : places.count
+        return places.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var place = Place()
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        }else{
-            place = places[indexPath.row]
-        }
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellRestaurant", for: indexPath) as! CafeTableViewCell
         cell.labelName.text = " \(indexPath.row + 1) \(place.name)"
         cell.labelLocation.text = place.locatin
         cell.labelType.text = place.type
         cell.imageCell.image = UIImage(data: place.imageDate!)
-        
-        cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
-        cell.imageCell.clipsToBounds = true
-        
+        cell.cosmosView.rating = place.rating
+
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -116,12 +110,8 @@ extension MainTableViewController: UITableViewDelegate, UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier  == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
-            var place = Place()
-            if isFiltering {
-                place = filteredPlaces[indexPath.row]
-            }else{
-                place = places[indexPath.row]
-            }
+            let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+            
             let goalViewController = segue.destination as! NewPlaceTableViewController
             goalViewController.currentPlace = place
         }

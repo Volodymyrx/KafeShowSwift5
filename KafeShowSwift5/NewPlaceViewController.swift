@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Cosmos
 
 class NewPlaceTableViewController: UITableViewController {
 
     var currentPlace: Place?
+    var currentRating: Double = 0.0
     
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     @IBOutlet weak var placeImage: UIImageView!
@@ -18,6 +20,7 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet weak var placeLocationTextField: UITextField!
     @IBOutlet weak var placeTypeTextField: UITextField!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var cosmosView: CosmosView!
     
     var imageIsChanged = false
     
@@ -31,6 +34,11 @@ class NewPlaceTableViewController: UITableViewController {
         saveButtonItem.isEnabled = false
         placeNameTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
+        
+        cosmosView.settings.fillMode = .half
+        cosmosView.didTouchCosmos = { rating in
+            self.currentRating = rating
+        }
         
     }
     
@@ -65,14 +73,17 @@ class NewPlaceTableViewController: UITableViewController {
                 currentPlace?.locatin = placeLocationTextField.text
                 currentPlace?.type = placeTypeTextField.text
                 currentPlace?.imageDate = imageDate
-                currentPlace?.rating = Double(ratingControl.rating)
+//                currentPlace?.rating = Double(ratingControl.rating)
+                currentPlace?.rating = currentRating
             }
         }else {
         let newPlace = Place(name: placeNameTextField.text!,
                              location: placeLocationTextField.text,
                              type: placeTypeTextField.text,
                              imageDate: imageDate,
-                             rating: Double(ratingControl.rating))
+                             rating: currentRating
+//                             rating: Double(ratingControl.rating)
+            )
         
         StorageManager.saveObject(newPlace)
         }
@@ -88,7 +99,8 @@ class NewPlaceTableViewController: UITableViewController {
             placeNameTextField.text = currentPlace?.name
             placeLocationTextField.text = currentPlace?.locatin
             placeTypeTextField.text = currentPlace?.type
-            ratingControl.rating = Int(currentPlace!.rating)
+            cosmosView.rating = currentPlace!.rating
+//            ratingControl.rating = Int(currentPlace!.rating)
         }
         
         
