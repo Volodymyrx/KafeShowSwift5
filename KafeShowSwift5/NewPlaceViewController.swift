@@ -157,10 +157,11 @@ class NewPlaceTableViewController: UITableViewController {
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {return}
-        
-        let mapViewController = segue.destination as! MapViewController
+        guard let identifier = segue.identifier, let mapViewController = segue.destination as? MapViewController else {return}
         mapViewController.place = currentPlace
+        mapViewController.incomeSegueIdentifier = identifier
+        mapViewController.mapViewControllerDelegate = self
+        
 //        prepare(for: segue, sender: nil)
         
         
@@ -204,4 +205,11 @@ extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
 }
-
+// MARK: get address user from map to place location
+extension NewPlaceTableViewController: MapViewControllerDelegate{
+    func getAddress(_ address: String?) {
+        self.placeLocationTextField.text = address
+    }
+    
+    
+}
